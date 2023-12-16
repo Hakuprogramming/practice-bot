@@ -4,10 +4,9 @@ const { Client, Collection, GatewayIntentBits, Events } = require('discord.js');
 const dotenv = require('dotenv')
 dotenv.config()
 
-
-
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 
+client.cooldown = new Collection();
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -41,4 +40,3 @@ for (const file of eventFiles) {
 }
 
 client.login(process.env.TOKEN);
-// console.log(process.env.TOKEN)
